@@ -1,7 +1,41 @@
 # Programowanie obiektowe - kolos nr. 2
 
+## Spis treści
+* Zagadnienia
+    * [Wykład 6](#wykład-6)
+    * [Wykład 8](#wykład-8)
+    * [Wykład 9](#wykład-9)
+    * [Wykład 10](#wykład-10)
+    * [Wykład 11](#wykład-11)
+    * [Wykład 12](#wykład-12)
+* *[Przydatne skróty](#przydatne-skróty)*
+* *[Przydatne snippety](#przydatne-snippety)*
+* **[Przykładowy kod](#przykładowy-kod)**
+    * wykład 6
+        * [Interfejsy](#6-interfejs)
+    * wykład 8
+        * [Typy ogólne (generyczne)](#8-generyczne)
+        * [Kolekcje](#8-kolekcje)
+    * wykład 9
+      * [Implementacja wbudowanych interfejsów](#9-implementacja-interfejsow)
+           * [IEnumerable](#9-ienumerable)
+           * [IEnumerable\<T\>](#9-ienumerable-t)
+           * [IComparable\<T\>](#9-icomparable-t)
+           * [IConvertible](#9-iconvertible)
+        * [Iteratory](#9-iteratory)
+    * wykład 10
+        * [Przeciążanie operatorów](#10-przeciazanie-operatorow)
+    * wykład 11
+        * [Delegaty](#11-delegaty)
+        * [Zdarzenia](#11-zdarzenia)
+        * [Funckje Lambda](#11-lambda)
+    * wykład 12
+        * [Serializacja](#12-serializacja)
 
-#### Wykład 6:
+
+## Zagadnienia
+
+#### Wykład 6
 * https://www.p-programowanie.pl/c-sharp/metody-wirtualne-abstrakcyjne-i-polimorfizm/
 	* Metody wirtualne (virtual w bazowej i override w pochodnej);
 	* Polimorfizm (przypisanie obiektu klasy pochodnej do typu klasy bazowej)
@@ -13,7 +47,8 @@
 * Typy ogólne (generyczne) -> Klasy ogólnie i metody ogólne: https://4programmers.net/C_sharp/Typy_generyczne
 * Kolekcje (System.Collections, System.Collections.Generic) (Kolejka, stos, Lista): //4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_7#kolekcje
 
-#### Wykład 9 - zastosowanie interfejsów
+#### Wykład 9
+*  zastosowanie interfejsów
 * IEnumerable, IEnumerator + znalezione w zakładkach
 * ICollection – chyba wywalic
 * IConvertible – chyba wywalic
@@ -39,51 +74,51 @@
 
 * `ctor` - *użyty wewnątrz klasy tworzy konstruktor*
 ```csharp
-	public PrzykladowaKlasa()
-	{
-	}
+public PrzykladowaKlasa()
+{
+}
 ```
 
 * `prop` - *tworzy właściwość w klasie*
 ```csharp
-	public int MyProperty { get; set; }
+public int MyProperty { get; set; }
 ```
 
 * `propfull` - *tworzy 'pewłną' właściwość w klasie*
 ```csharp
-	private int myVar;
+private int myVar;
 
-	public int MyProperty
-	{
-		get { return myVar; }
-		set { myVar = value; }
-	}
+public int MyProperty
+{
+    get { return myVar; }
+    set { myVar = value; }
+}
 ```
 
 * `propfull` - *tworzy 'pewłną' właściwość w klasie*
 ```csharp
-	private int myVar;
+private int myVar;
 
-	public int MyProperty
-	{
-		get { return myVar; }
-		set { myVar = value; }
-	}
+public int MyProperty
+{
+    get { return myVar; }
+    set { myVar = value; }
+}
 ```
 
 * `indexer` - *tworzy 'indeksator'
 ```csharp
-	public object this[int index]
-	{
-		get { /* return the specified index here */ }
-		set { /* set the specified index to value here */ }
-	}
+public object this[int index]
+{
+    get { /* return the specified index here */ }
+    set { /* set the specified index to value here */ }
+}
 ```
 
 
 # Przykładowy kod
 
-## Interfejs (wykład 6)
+## <span id="6-interfejs"></span> Interfejs (wykład 6) 
 https://4programmers.net/C_sharp/Interfejsy
 ```csharp
 // przykładowy interfejs, może (ale nie musi) zaczynać się litery I
@@ -116,7 +151,7 @@ class Klasa : IMojInterfejs, DrugiInterfejs
 }
 ```
 
-## Typy ogólne (generyczne) (wykład 8)
+## <span id="8-generyczne"></span> Typy ogólne (generyczne) (wykład 8)
 https://4programmers.net/C_sharp/Typy_generyczne
 
 ```csharp
@@ -149,7 +184,7 @@ https://4programmers.net/C_sharp/Typy_generyczne
     }
 ``` 
 
-## Kolekcje (System.Collections, System.Collections.Generic) (wykład 8)
+## <span id="8-kolekcje"></span> Kolekcje (System.Collections, System.Collections.Generic) (wykład 8)
 * Kolejka
 * Stos
 * ArrayList
@@ -181,18 +216,18 @@ string c = slownik["klucz"];
 ```
 
 
-## Implementacja wbudowanych interfejsów (wykład 9)
+## <span id="9-implementacja-interfejsow"></span> Implementacja wbudowanych interfejsów (wykład 9)
 
 
-### interfejs IEnumerable (wykład 9)
+### <span id="9-ienumerable"></span> interfejs IEnumerable (wykład 9)
 
 
-### interfejs IEnumerable\<T\> (wykład 9)
+###<span id="9-ienumerable-t"></span>  interfejs IEnumerable\<T\> (wykład 9)
 
 
-### interfejs IComparable\<T\> (wykład 9)
+### <span id="9-icomparable-t"></span> interfejs IComparable\<T\> (wykład 9)
 
-### interfejs IConvertible (wykład 9)
+### <span id="9-iconvertible"></span> interfejs IConvertible (wykład 9)
 zadanie od karwosza
 Dla klasy Book zaimplementuj sensownie interfejs IConvertible
 <pre>
@@ -213,21 +248,22 @@ Dla klasy Book zaimplementuj sensownie interfejs IConvertible
     }
 </pre>
 
-### Iteratory (wykład 9)
+### <span id="9-iteratory"></span> Iteratory (wykład 9)
 
 
-## Przeciążanie operatorów (wykład 10)
+## <span id="10-przeciazanie-operatorow"></span>  Przeciążanie operatorów (wykład 10)
 http://cezarywalenciuk.pl/blog/programing/post/kurs-obiektowosc-w-c-przeciazanie-operatorow-16
 
-## Delegaty (wykład 11)
+## <span id="11-delegaty"></span>  Delegaty (wykład 11)
 https://4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_6
 
 
-## Zdarzenia (wykład 11)
+## <span id="11-zdarzenia"></span> Zdarzenia (wykład 11)
 https://4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_6
 
-## Funckje Lambda (wykład 11)
+## <span id="11-lambda"></span> Funckje Lambda (wykład 11)
 https://4programmers.net/C_sharp/Wyra%C5%BCenie_Lambda
 
 
-## Serializacja (wykład 12)
+## <span id="12-serializacja"></span>  Serializacja (wykład 12)
+
