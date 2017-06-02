@@ -66,9 +66,16 @@
 
 
 ## Przydatne skróty
-* `Ctrl + Shift + Space` - wyświetla parametry funkcji i jej opis
 * `Ctrl + K + D` (trzymając Ctrl wciskamy najpierw K potem D) - formatowanie kodu
 
+* `Ctrl + Shift + Space` - wyświetla parametry funkcji i jej opis
+
+![photo](https://raw.githubusercontent.com/ZielonyBuszmen/sggw-wzim-programowanie/master/jpg/ctrl_shift_space.jpg)
+
+
+* Implementacja interfejsu - wystarczy przytrzymać myszkę nad nazwą, nacisnąć na żarówkę i wybrać "implement interface" (tak jak na screenie):
+
+![photo](https://raw.githubusercontent.com/ZielonyBuszmen/sggw-wzim-programowanie/master/jpg/implementowanie-interfejsu.jpg)
 
 ## Przydatne snippety
 
