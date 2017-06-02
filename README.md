@@ -118,7 +118,7 @@ public object this[int index]
 
 # Przykładowy kod
 
-## <div id="6-interfejs"></div> Interfejs (wykład 6) 
+## <a id="6-interfejs"></a> Interfejs (wykład 6) 
 https://4programmers.net/C_sharp/Interfejsy
 ```csharp
 // przykładowy interfejs, może (ale nie musi) zaczynać się litery I
@@ -184,7 +184,7 @@ https://4programmers.net/C_sharp/Typy_generyczne
     }
 ``` 
 
-## <a href="#8-kolekcje"></a> Kolekcje (System.Collections, System.Collections.Generic) (wykład 8)
+## <a id="8-kolekcje"></a> Kolekcje (System.Collections, System.Collections.Generic) (wykład 8)
 * Kolejka
 * Stos
 * ArrayList
@@ -216,18 +216,18 @@ string c = slownik["klucz"];
 ```
 
 
-## <span id="9-implementacja-interfejsow"></span> Implementacja wbudowanych interfejsów (wykład 9)
+## <a id="9-implementacja-interfejsow"></a> Implementacja wbudowanych interfejsów (wykład 9)
 
 
-### <span id="9-ienumerable"></span> interfejs IEnumerable (wykład 9)
+### <a id="9-ienumerable"></a> interfejs IEnumerable (wykład 9)
 
 
-###<span id="9-ienumerable-t"></span>  interfejs IEnumerable\<T\> (wykład 9)
+###<a id="9-ienumerable-t"></a>  interfejs IEnumerable\<T\> (wykład 9)
 
 
-### <span id="9-icomparable-t"></span> interfejs IComparable\<T\> (wykład 9)
+### <a id="9-icomparable-t"></a> interfejs IComparable\<T\> (wykład 9)
 
-### <span id="9-iconvertible"></span> interfejs IConvertible (wykład 9)
+### <a id="9-iconvertible"></a> interfejs IConvertible (wykład 9)
 zadanie od karwosza
 Dla klasy Book zaimplementuj sensownie interfejs IConvertible
 <pre>
@@ -248,22 +248,22 @@ Dla klasy Book zaimplementuj sensownie interfejs IConvertible
     }
 </pre>
 
-### <span id="9-iteratory"></span> Iteratory (wykład 9)
+### <a id="9-iteratory"></a> Iteratory (wykład 9)
 
 
-## <span id="10-przeciazanie-operatorow"></span>  Przeciążanie operatorów (wykład 10)
+## <a id="10-przeciazanie-operatorow"></a>  Przeciążanie operatorów (wykład 10)
 http://cezarywalenciuk.pl/blog/programing/post/kurs-obiektowosc-w-c-przeciazanie-operatorow-16
 
-## <span id="11-delegaty"></span>  Delegaty (wykład 11)
+## <a id="11-delegaty"></a>  Delegaty (wykład 11)
 https://4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_6
 
 
-## <span id="11-zdarzenia"></span> Zdarzenia (wykład 11)
+## <a id="11-zdarzenia"></a> Zdarzenia (wykład 11)
 https://4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_6
 
-## <span id="11-lambda"></span> Funckje Lambda (wykład 11)
+## <a id="11-lambda"></a> Funckje Lambda (wykład 11)
 https://4programmers.net/C_sharp/Wyra%C5%BCenie_Lambda
 
 
-## <span id="12-serializacja"></span>  Serializacja (wykład 12)
+## <a id="12-serializacja"></a>  Serializacja (wykład 12)
 
