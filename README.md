@@ -118,7 +118,7 @@ public object this[int index]
 
 # Przykładowy kod
 
-## <span id="6-interfejs"></span> Interfejs (wykład 6) 
+## <div id="6-interfejs"></div> Interfejs (wykład 6) 
 https://4programmers.net/C_sharp/Interfejsy
 ```csharp
 // przykładowy interfejs, może (ale nie musi) zaczynać się litery I
@@ -151,7 +151,7 @@ class Klasa : IMojInterfejs, DrugiInterfejs
 }
 ```
 
-## <span id="8-generyczne"></span> Typy ogólne (generyczne) (wykład 8)
+## <a id="8-generyczne"></a> Typy ogólne (generyczne) (wykład 8)
 https://4programmers.net/C_sharp/Typy_generyczne
 
 ```csharp
@@ -184,7 +184,7 @@ https://4programmers.net/C_sharp/Typy_generyczne
     }
 ``` 
 
-## <span id="8-kolekcje"></span> Kolekcje (System.Collections, System.Collections.Generic) (wykład 8)
+## <a href="#8-kolekcje"></a> Kolekcje (System.Collections, System.Collections.Generic) (wykład 8)
 * Kolejka
 * Stos
 * ArrayList
