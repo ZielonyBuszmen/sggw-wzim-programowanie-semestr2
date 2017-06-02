@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfejs", "Interfejs\Interfejs.csproj", "{F6A811B8-DC82-42CC-802F-B1821B22F064}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Typy ogólne (generyczne)", "Typy ogólne (generyczne)\Typy ogólne (generyczne).csproj", "{2F380256-1898-4EA0-9A1A-9E893FCFB08D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kolekcje - użycie", "Kolekcje - użycie\Kolekcje - użycie.csproj", "{5689913F-108B-4DBB-90AA-EF8C736E9978}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6A811B8-DC82-42CC-802F-B1821B22F064}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6A811B8-DC82-42CC-802F-B1821B22F064}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6A811B8-DC82-42CC-802F-B1821B22F064}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6A811B8-DC82-42CC-802F-B1821B22F064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F380256-1898-4EA0-9A1A-9E893FCFB08D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F380256-1898-4EA0-9A1A-9E893FCFB08D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F380256-1898-4EA0-9A1A-9E893FCFB08D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F380256-1898-4EA0-9A1A-9E893FCFB08D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5689913F-108B-4DBB-90AA-EF8C736E9978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5689913F-108B-4DBB-90AA-EF8C736E9978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5689913F-108B-4DBB-90AA-EF8C736E9978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5689913F-108B-4DBB-90AA-EF8C736E9978}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
