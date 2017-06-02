@@ -22,7 +22,7 @@
            * [IEnumerable\<T\>](#9-ienumerable-t)
            * [IComparable\<T\>](#9-icomparable-t)
            * [IConvertible](#9-iconvertible)
-        * [Iteratory](#9-iteratory)
+      * [Iteratory](#9-iteratory)
     * wykład 10
         * [Przeciążanie operatorów](#10-przeciazanie-operatorow)
     * wykład 11
@@ -222,7 +222,7 @@ string c = slownik["klucz"];
 ### <a id="9-ienumerable"></a> interfejs IEnumerable (wykład 9)
 
 
-###<a id="9-ienumerable-t"></a>  interfejs IEnumerable\<T\> (wykład 9)
+### <a id="9-ienumerable-t"></a>  interfejs IEnumerable\<T\> (wykład 9)
 
 
 ### <a id="9-icomparable-t"></a> interfejs IComparable\<T\> (wykład 9)
@@ -248,7 +248,7 @@ Dla klasy Book zaimplementuj sensownie interfejs IConvertible
     }
 </pre>
 
-### <a id="9-iteratory"></a> Iteratory (wykład 9)
+## <a id="9-iteratory"></a> Iteratory (wykład 9)
 
 
 ## <a id="10-przeciazanie-operatorow"></a>  Przeciążanie operatorów (wykład 10)
