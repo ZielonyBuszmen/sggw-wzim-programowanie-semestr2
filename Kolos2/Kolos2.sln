@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Typy ogólne (generyczne)",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kolekcje - użycie", "Kolekcje - użycie\Kolekcje - użycie.csproj", "{5689913F-108B-4DBB-90AA-EF8C736E9978}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfejs IEnumerable", "Interfejs IEnumerable\Interfejs IEnumerable.csproj", "{6ACA5272-5884-41EE-8138-459CB2108D71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfejs IEnumerable-T", "Interfejs IEnumerable-T\Interfejs IEnumerable-T.csproj", "{F7725746-353E-46C4-8046-FD09A4BBB41A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrzeciazanieOperatorow", "PrzeciazanieOperatorow\PrzeciazanieOperatorow.csproj", "{50FE0999-EA5E-4190-9A7C-C8EB3B00A887}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +33,18 @@ Global
 		{5689913F-108B-4DBB-90AA-EF8C736E9978}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5689913F-108B-4DBB-90AA-EF8C736E9978}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5689913F-108B-4DBB-90AA-EF8C736E9978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ACA5272-5884-41EE-8138-459CB2108D71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ACA5272-5884-41EE-8138-459CB2108D71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ACA5272-5884-41EE-8138-459CB2108D71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ACA5272-5884-41EE-8138-459CB2108D71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7725746-353E-46C4-8046-FD09A4BBB41A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7725746-353E-46C4-8046-FD09A4BBB41A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7725746-353E-46C4-8046-FD09A4BBB41A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7725746-353E-46C4-8046-FD09A4BBB41A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50FE0999-EA5E-4190-9A7C-C8EB3B00A887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50FE0999-EA5E-4190-9A7C-C8EB3B00A887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50FE0999-EA5E-4190-9A7C-C8EB3B00A887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50FE0999-EA5E-4190-9A7C-C8EB3B00A887}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

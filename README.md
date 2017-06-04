@@ -1,13 +1,34 @@
 # Programowanie obiektowe - kolos nr. 2
 
+## Zagadnienia
+#### Wykład 6
+* https://www.p-programowanie.pl/c-sharp/metody-wirtualne-abstrakcyjne-i-polimorfizm/
+	* Metody wirtualne (virtual w bazowej i override w pochodnej);
+	* Polimorfizm (przypisanie obiektu klasy pochodnej do typu klasy bazowej)
+	* Metody abstrakcyjne 
+* Interfejsy: https://4programmers.net/C_sharp/Interfejsy
+
+#### Wykład 8
+* Typy ogólne (generyczne) -> Klasy ogólnie i metody ogólne: https://4programmers.net/C_sharp/Typy_generyczne
+* Kolekcje (System.Collections, System.Collections.Generic) (Słownik, Stos, Lista): //4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_7#kolekcje
+
+#### Wykład 9
+* Zastosowanie interfejsów
+    * IEnumerable, IEnumerator: http://cezarywalenciuk.pl/blog/programing/post/ienumerable-i-ienumerator-implementowanie-tych-interfejsow
+    * ICollection
+    * IConvertible
+
+#### Wykład 10
+* Przeciążanie operatorów: http://cezarywalenciuk.pl/blog/programing/post/kurs-obiektowosc-w-c-przeciazanie-operatorow-16
+
+#### Wykład 11
+* Delegaty i zdarzenia, metody anonimowe: https://4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_6
+* Funkcje Lambda: https://4programmers.net/C_sharp/Wyra%C5%BCenie_Lambda
+
+#### Wykład 12
+* Serializacja + znalezione w zakładkach
+
 ## Spis treści
-* Zagadnienia
-    * [Wykład 6](#wykład-6)
-    * [Wykład 8](#wykład-8)
-    * [Wykład 9](#wykład-9)
-    * [Wykład 10](#wykład-10)
-    * [Wykład 11](#wykład-11)
-    * [Wykład 12](#wykład-12)
 * *[Przydatne skróty](#przydatne-skróty)*
 * *[Przydatne snippety](#przydatne-snippety)*
 * **[Przykładowy kod](#przykładowy-kod)**
@@ -31,38 +52,6 @@
         * [Funckje Lambda](#11-lambda)
     * wykład 12
         * [Serializacja](#12-serializacja)
-
-
-## Zagadnienia
-
-#### Wykład 6
-* https://www.p-programowanie.pl/c-sharp/metody-wirtualne-abstrakcyjne-i-polimorfizm/
-	* Metody wirtualne (virtual w bazowej i override w pochodnej);
-	* Polimorfizm (przypisanie obiektu klasy pochodnej do typu klasy bazowej)
-	* Metody abstrakcyjne (gdy taka jest w klasie, to klasa jest abstrakcyjna również) 
-* Interfejsy: https://4programmers.net/C_sharp/Interfejsy
-
-
-#### Wykład 8
-* Typy ogólne (generyczne) -> Klasy ogólnie i metody ogólne: https://4programmers.net/C_sharp/Typy_generyczne
-* Kolekcje (System.Collections, System.Collections.Generic) (Kolejka, stos, Lista): //4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_7#kolekcje
-
-#### Wykład 9
-*  zastosowanie interfejsów
-* IEnumerable, IEnumerator + znalezione w zakładkach
-* ICollection – chyba wywalic
-* IConvertible – chyba wywalic
-
-#### Wykład 10
-* Przeciążanie operatorów: http://cezarywalenciuk.pl/blog/programing/post/kurs-obiektowosc-w-c-przeciazanie-operatorow-16
-
-
-#### Wykład 11
-* Delegaty i zdarzenia, metody anonimowe: https://4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_6
-* Funkcje Lambda: https://4programmers.net/C_sharp/Wyra%C5%BCenie_Lambda
-
-#### Wykład 12
-* Serializacja + znalezione w zakładkach
 
 
 ## Przydatne skróty
@@ -91,7 +80,8 @@ public PrzykladowaKlasa()
 public int MyProperty { get; set; }
 ```
 
-* `propfull` - *tworzy 'pewłną' właściwość w klasie*
+
+* `propfull` - *tworzy 'pełną' właściwość w klasie*
 ```csharp
 private int myVar;
 
@@ -102,18 +92,7 @@ public int MyProperty
 }
 ```
 
-* `propfull` - *tworzy 'pewłną' właściwość w klasie*
-```csharp
-private int myVar;
-
-public int MyProperty
-{
-    get { return myVar; }
-    set { myVar = value; }
-}
-```
-
-* `indexer` - *tworzy 'indeksator'
+* `indexer` - *tworzy 'indeksator'*
 ```csharp
 public object this[int index]
 {
@@ -192,10 +171,9 @@ https://4programmers.net/C_sharp/Typy_generyczne
 ``` 
 
 ## <a id="8-kolekcje"></a> Kolekcje (System.Collections, System.Collections.Generic) (wykład 8)
-* Kolejka
 * Stos
-* ArrayList
 * Lista
+* Słownik
 
 https://4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_7#kolekcje
 
@@ -223,14 +201,161 @@ string c = slownik["klucz"];
 ```
 
 
-## <a id="9-implementacja-interfejsow"></a> Implementacja wbudowanych interfejsów (wykład 9)
 
+## <a id="9-iteratory"></a> Iteratory (wykład 9)
 
-### <a id="9-ienumerable"></a> interfejs IEnumerable (wykład 9)
+### <a id="9-ienumerable"></a> interfejs IEnumerator i IEnumerable(wykład 9)
 
+http://cezarywalenciuk.pl/blog/programing/post/ienumerable-i-ienumerator-implementowanie-tych-interfejsow
+
+```csharp
+// WAŻNE - aby implementować ten interfejs, trzeba ręcznie dodać System.Collections
+using System.Collections;
+namespace Interfejs_IEnumerable
+{
+    // przykładowa klasa, która zawiera w sobie listę pracowników
+    // implementujemy oba interfejsy -> IEnumerator i IEnumerable
+    class Pracownicy : IEnumerator, IEnumerable
+    {
+        string[] lista_pracownikow;
+        int licznik = -1;
+
+        public Pracownicy()
+        {
+            lista_pracownikow = new string[] 
+            { "Programista", "Sprzątaczka", "Pan Wiesiu", "Halina z dziekanatu", "Prezes Wojtek Ch." };
+        }
+
+        //-----------------------------------------------------------
+        // właściwość z IEnumerator
+        // zwraca 'aktualny' element (pracownika)
+        public object Current
+        {
+            get { return this.lista_pracownikow[licznik]; }
+        }
+
+        // metoda z IEnumerator
+        // przechodzi do następnego elementu (pracownika)
+        public bool MoveNext()
+        {
+            // zwiększamy licznik. Jeśli nie wykracza poza tablicę, zwracamy true, 
+            // w przeciwnym wypadku false
+            licznik++;
+            if (licznik < this.lista_pracownikow.Length) return true;
+            else return false;
+        }
+
+        // metoda z IEnumerator
+        public void Reset()
+        {
+            // zmieniamy licznik do domyślnej wartości
+            licznik = -1;
+        }
+        
+        //-----------------------------------------------------------
+        // metoda z IEnumerable
+        public IEnumerator GetEnumerator()
+        {
+            return this;
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Pracownicy robole= new Pracownicy();
+            foreach (var robol in robole)
+            {
+                Console.WriteLine(robol);
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
+```
 
 ### <a id="9-ienumerable-t"></a>  interfejs IEnumerable\<T\> (wykład 9)
+```csharp
+class ListaCzynności<T> : IEnumerable<T>
+    {
+        T[] przechowalnik;
+        int licznik = 0;
+        public ListaCzynności(int ilosc)
+        {
+            przechowalnik = new T[ilosc];
+        }
 
+
+        public void Dodaj(T rzecz)
+        {
+            this.przechowalnik[licznik] = rzecz;
+            licznik++;
+        }
+
+        // ---------------------------------------------
+        // metody z IEnumerable<T>
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            // szybszy sposób implementacji enumeratora
+            for (int i = 0; i < przechowalnik.Length; i++)
+            {
+                // ważne słówko YIELD
+                yield return przechowalnik[i];
+            }
+
+        }
+
+        // to też być musi
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            // zwracamy funkcję napisaną kilka linije wyżej
+            return this.GetEnumerator();
+        }
+        // ---------------------------------------------
+
+        // własny enumerator
+        public IEnumerable OdTyłu()
+        {
+            for (int i = przechowalnik.Length - 1; i >= 0; i--)
+            {
+                yield return przechowalnik[i];
+            }
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // przypadki użycia
+            ListaCzynności<string> listaToDo = new ListaCzynności<string>(5);
+            listaToDo.Dodaj("Zapytać się o zadanie z analizy");
+            listaToDo.Dodaj("Ble");
+            listaToDo.Dodaj("Wydrukować ściągi na kartce w kratkę");
+            listaToDo.Dodaj("Naucyzć się na 2 kolosy z elektro");
+            listaToDo.Dodaj("Kupić mleko");
+
+            // korzystamy z funkcji GetEnumerator()
+            foreach (var item in listaToDo)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+
+            // korzystamy z funkcji OdTyłu()
+            foreach (var item in listaToDo.OdTyłu())
+            {
+                Console.WriteLine(item);
+            }
+            Console.ReadKey();
+        }
+    }
+```
+
+## <a id="9-implementacja-interfejsow"></a> Implementacja wbudowanych interfejsów (wykład 9)
 
 ### <a id="9-icomparable-t"></a> interfejs IComparable\<T\> (wykład 9)
 
@@ -255,12 +380,22 @@ Dla klasy Book zaimplementuj sensownie interfejs IConvertible
     }
 </pre>
 
-## <a id="9-iteratory"></a> Iteratory (wykład 9)
 
 
 ## <a id="10-przeciazanie-operatorow"></a>  Przeciążanie operatorów (wykład 10)
 http://cezarywalenciuk.pl/blog/programing/post/kurs-obiektowosc-w-c-przeciazanie-operatorow-16
 
+
+```csharp
+class Ble
+{
+    // przeciążenie operatora +
+    public static Ble operator+(Ble a, Ble b)
+    {
+        return new Ble(a+b);
+    }
+}
+```
 ## <a id="11-delegaty"></a>  Delegaty (wykład 11)
 https://4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_6
 
