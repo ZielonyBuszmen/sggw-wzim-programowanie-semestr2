@@ -66,7 +66,7 @@
 
 
 ## Przydatne skróty
-* `Ctrl + K + D` (trzymając Ctrl wciskamy najpierw K potem D) - formatowanie kodu
+* `Ctrl + K, Ctrl + D` - formatowanie kodu
 
 * `Ctrl + Shift + Space` - wyświetla parametry funkcji i jej opis
 
