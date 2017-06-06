@@ -2,34 +2,38 @@
 
 ## Zagadnienia
 #### Wykład 6
-* https://www.p-programowanie.pl/c-sharp/metody-wirtualne-abstrakcyjne-i-polimorfizm/
-	* Metody wirtualne (virtual w bazowej i override w pochodnej);
-	* Polimorfizm (przypisanie obiektu klasy pochodnej do typu klasy bazowej)
-	* Metody abstrakcyjne 
+* Przypomnienie o metodach wirtualnych, polimorfizmie i metodach abstrakcyjnych https://www.p-programowanie.pl/c-sharp/metody-wirtualne-abstrakcyjne-i-polimorfizm/
 * Interfejsy: https://4programmers.net/C_sharp/Interfejsy
 
 #### Wykład 8
 * Typy ogólne (generyczne) -> Klasy ogólnie i metody ogólne: https://4programmers.net/C_sharp/Typy_generyczne
-* Kolekcje (System.Collections, System.Collections.Generic) (Słownik, Stos, Lista): //4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_7#kolekcje
+* Kolekcje (Stos, Kolejka, Lista, ArrayList, LinkedList): 
+    * http://4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_7#kolekcje
+    * http://www.altcontroldelete.pl/artykuly/operacje-na-kolekcjach-w-c-/
 
 #### Wykład 9
 * Zastosowanie interfejsów
     * IEnumerable, IEnumerator: http://cezarywalenciuk.pl/blog/programing/post/ienumerable-i-ienumerator-implementowanie-tych-interfejsow
     * ICollection
-    * IConvertible
+    * IComparable, IComparer
 
 #### Wykład 10
 * Przeciążanie operatorów: http://cezarywalenciuk.pl/blog/programing/post/kurs-obiektowosc-w-c-przeciazanie-operatorow-16
 
 #### Wykład 11
-* Delegaty i zdarzenia, metody anonimowe:   
+* Delegaty
     * https://4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_6
-    * http://cezarywalenciuk.pl/blog/programing/post/c-delegaty-action-i-func 
-* Funkcje Lambda: https://4programmers.net/C_sharp/Wyra%C5%BCenie_Lambda
+* Funkcje Lambda z Func i Action: 
+    * https://4programmers.net/C_sharp/Wyra%C5%BCenie_Lambda
+    * http://cezarywalenciuk.pl/blog/programing/post/c-delegaty-action-i-func
 
 #### Wykład 12
 * Serializacja binarna
 * Serializacja XML: https://www.codeproject.com/Articles/483055/XML-Serialization-and-Deserialization-Part
+
+#### Wykład 13
+* Refleksja
+* CodeDOM
 
 ## Spis treści
 * *[Przydatne skróty](#przydatne-skróty)*
@@ -39,19 +43,19 @@
         * [Interfejsy](#6-interfejs)
     * wykład 8
         * [Typy ogólne (generyczne)](#8-generyczne)
-        * [Kolekcje](#8-kolekcje)
+        * [ Kolekcje (Stos, Kolejka, Lista, ArrayList, LinkedList)](#8-kolekcje)
     * wykład 9
+        * [Iteratory](#9-iteratory)
+            * [IEnumerable](#9-ienumerable)
+            * [IEnumerable\<T\>](#9-ienumerable-t)
       * [Implementacja wbudowanych interfejsów](#9-implementacja-interfejsow)
-           * [IEnumerable](#9-ienumerable)
-           * [IEnumerable\<T\>](#9-ienumerable-t)
            * [IComparable\<T\>](#9-icomparable-t)
-           * [IConvertible](#9-iconvertible)
-      * [Iteratory](#9-iteratory)
+           * [ICollection](#9-icollection-t)
     * wykład 10
         * [Przeciążanie operatorów](#10-przeciazanie-operatorow)
     * wykład 11
         * [Delegaty](#11-delegaty)
-        * [Funckje Lambda](#11-lambda)
+        * [Funckje Lambda z Func i Action](#11-lambda)
     * wykład 12
         * [Serializacja binarna](#12-serializacja-bianarna)
         * [Serializacja XML](#12-serializacja-xml)
@@ -72,6 +76,11 @@
 * Implementacja interfejsu - wystarczy przytrzymać myszkę nad nazwą, nacisnąć na żarówkę i wybrać "implement interface" (tak jak na screenie):
 
 ![photo](https://raw.githubusercontent.com/ZielonyBuszmen/sggw-wzim-programowanie/master/jpg/implementowanie-interfejsu.jpg)
+
+* Open in Explorer - *Prawym myszy* na projekt -> *Open folder in file Explorer*
+![photo](https://raw.githubusercontent.com/ZielonyBuszmen/sggw-wzim-programowanie/master/jpg/show-in-explorer.jpg)
+
+* Pliki z serializacji zapisują się w ***\bin\Debug***
 
 ## Przydatne snippety
 
@@ -408,6 +417,8 @@ class Osoba : IComparable<Osoba>
 }
 ```
 
+### <a id="9-icollection-t"></a> interfejs ICollection (wykład 9)
+
 ## <a id="10-przeciazanie-operatorow"></a>  Przeciążanie operatorów (wykład 10)
 http://cezarywalenciuk.pl/blog/programing/post/kurs-obiektowosc-w-c-przeciazanie-operatorow-16
 
@@ -511,6 +522,8 @@ Action<int> funkcja4 = (int a) => { };
 
 ## <a id="12-serializacja-bianarna"></a> Serializacja binarna (wykład 12)</a>
 
+* Pliki z serializacji zapisują się w ***\bin\Debug***
+
 ```csharp
 // ważne usingi
 using System.IO;
@@ -597,6 +610,8 @@ class Program
 
 ## <a id="12-serializacja-xml"></a> Serializacja XML (wykład 12)</a> 
 https://www.codeproject.com/Articles/483055/XML-Serialization-and-Deserialization-Part
+
+* Pliki z serializacji zapisują się w ***\bin\Debug***
 
 1. Serializacja XML działa tylko na publicznych polach i właściwościach
 2. Serializacja XML nie zapisuje typu zmiennej
