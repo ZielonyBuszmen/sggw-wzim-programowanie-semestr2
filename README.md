@@ -22,11 +22,14 @@
 * Przeciążanie operatorów: http://cezarywalenciuk.pl/blog/programing/post/kurs-obiektowosc-w-c-przeciazanie-operatorow-16
 
 #### Wykład 11
-* Delegaty i zdarzenia, metody anonimowe: https://4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_6
+* Delegaty i zdarzenia, metody anonimowe:   
+    * https://4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_6
+    * http://cezarywalenciuk.pl/blog/programing/post/c-delegaty-action-i-func 
 * Funkcje Lambda: https://4programmers.net/C_sharp/Wyra%C5%BCenie_Lambda
 
 #### Wykład 12
-* Serializacja + znalezione w zakładkach
+* Serializacja binarna
+* Serializacja XML: https://www.codeproject.com/Articles/483055/XML-Serialization-and-Deserialization-Part
 
 ## Spis treści
 * *[Przydatne skróty](#przydatne-skróty)*
@@ -48,10 +51,14 @@
         * [Przeciążanie operatorów](#10-przeciazanie-operatorow)
     * wykład 11
         * [Delegaty](#11-delegaty)
-        * [Zdarzenia](#11-zdarzenia)
         * [Funckje Lambda](#11-lambda)
     * wykład 12
-        * [Serializacja](#12-serializacja)
+        * [Serializacja binarna](#12-serializacja-bianarna)
+        * [Serializacja XML](#12-serializacja-xml)
+    * Wykład 13
+        * [CodeDOM](#13-code-dom)
+        * [Refleksja](#13-refleksja)
+
 
 
 ## Przydatne skróty
@@ -171,11 +178,15 @@ https://4programmers.net/C_sharp/Typy_generyczne
 ``` 
 
 ## <a id="8-kolekcje"></a> Kolekcje (System.Collections, System.Collections.Generic) (wykład 8)
-* Stos
-* Lista
-* Słownik
+* Stos (Stack)
+* Kolejka (Queue)
+* Lista (List)
+* ArrayList
+* LinkedList
+
 
 https://4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_7#kolekcje
+http://www.altcontroldelete.pl/artykuly/operacje-na-kolekcjach-w-c-/
 
 Użycie przykładowych kolekcji
 ```csharp
@@ -185,19 +196,37 @@ using System.Collections.Generic;
 
 // stos
 Stack<int> stos = new Stack<int>();
-stos.Push(12);
-int a = stos.Pop();
+stos.Push(12); // wrzuca element na stos
+int b = stos.Peek(); // zwraca element ze stosu bez jego usuwania
+int a = stos.Pop(); // pobiera element ze stosu
+
+//kolejka
+Queue<double> kolejka = new Queue<double>();
+kolejka.Enqueue(33); // dodaje element na koniec
+kolejka.Peek(); // zwraca element z początku kolejki bez jego usuwania
+kolejka.Dequeue(); // zdejmuje i zwraca pierwszy element kolejki
+
 
 // lista
 List<string> lista = new List<string>();
 lista.Add("element1");
-string b = lista[0];
+lista.First(); // zwraca pierwszy element listy
+string d = lista[0]; // zwraca wybrany elemet listy
 
-// słownik
-Dictionary<string, string> slownik = new Dictionary<string, string>();
-slownik.Add("klucz", "wartosc");
-slownik.Add("inny_klucz", "tekst");
-string c = slownik["klucz"];
+
+// ArrayList - przechowuje wszystko (typ object)
+ArrayList arrList = new ArrayList();
+arrList.Add("asdasd");
+arrList.Add(234);
+object wynik = arrList[0];
+
+
+// LinkedList - lista połączona
+LinkedList<int> linkedList = new LinkedList<int>();
+linkedList.AddFirst(2); // umożwliwia wrzucanie elementów na początek
+linkedList.AddLast(4); // i na koniec
+linkedList.First(); // pobiera pierwszy element
+linkedList.Last(); // pobiera ostatni element
 ```
 
 
@@ -279,112 +308,108 @@ namespace Interfejs_IEnumerable
 ### <a id="9-ienumerable-t"></a>  interfejs IEnumerable\<T\> (wykład 9)
 ```csharp
 class ListaCzynności<T> : IEnumerable<T>
+{
+    T[] przechowalnik;
+    int licznik = 0;
+    public ListaCzynności(int ilosc)
     {
-        T[] przechowalnik;
-        int licznik = 0;
-        public ListaCzynności(int ilosc)
-        {
-            przechowalnik = new T[ilosc];
-        }
-
-
-        public void Dodaj(T rzecz)
-        {
-            this.przechowalnik[licznik] = rzecz;
-            licznik++;
-        }
-
-        // ---------------------------------------------
-        // metody z IEnumerable<T>
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            // szybszy sposób implementacji enumeratora
-            for (int i = 0; i < przechowalnik.Length; i++)
-            {
-                // ważne słówko YIELD
-                yield return przechowalnik[i];
-            }
-
-        }
-
-        // to też być musi
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            // zwracamy funkcję napisaną kilka linije wyżej
-            return this.GetEnumerator();
-        }
-        // ---------------------------------------------
-
-        // własny enumerator
-        public IEnumerable OdTyłu()
-        {
-            for (int i = przechowalnik.Length - 1; i >= 0; i--)
-            {
-                yield return przechowalnik[i];
-            }
-        }
+        przechowalnik = new T[ilosc];
     }
 
-    class Program
+
+    public void Dodaj(T rzecz)
     {
-        static void Main(string[] args)
+        this.przechowalnik[licznik] = rzecz;
+        licznik++;
+    }
+
+    // ---------------------------------------------
+    // metody z IEnumerable<T>
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        // szybszy sposób implementacji enumeratora
+        for (int i = 0; i < przechowalnik.Length; i++)
         {
-            // przypadki użycia
-            ListaCzynności<string> listaToDo = new ListaCzynności<string>(5);
-            listaToDo.Dodaj("Zapytać się o zadanie z analizy");
-            listaToDo.Dodaj("Ble");
-            listaToDo.Dodaj("Wydrukować ściągi na kartce w kratkę");
-            listaToDo.Dodaj("Naucyzć się na 2 kolosy z elektro");
-            listaToDo.Dodaj("Kupić mleko");
+            // ważne słówko YIELD
+            yield return przechowalnik[i];
+        }
 
-            // korzystamy z funkcji GetEnumerator()
-            foreach (var item in listaToDo)
-            {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine();
+    }
 
-            // korzystamy z funkcji OdTyłu()
-            foreach (var item in listaToDo.OdTyłu())
-            {
-                Console.WriteLine(item);
-            }
-            Console.ReadKey();
+    // to też być musi
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        // zwracamy funkcję napisaną kilka linije wyżej
+        return this.GetEnumerator();
+    }
+    // ---------------------------------------------
+
+    // własny enumerator
+    public IEnumerable OdTyłu()
+    {
+        for (int i = przechowalnik.Length - 1; i >= 0; i--)
+        {
+            yield return przechowalnik[i];
         }
     }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // przypadki użycia
+        ListaCzynności<string> listaToDo = new ListaCzynności<string>(5);
+        listaToDo.Dodaj("Zapytać się o zadanie z analizy");
+        listaToDo.Dodaj("Ble");
+        listaToDo.Dodaj("Wydrukować ściągi na kartce w kratkę");
+        listaToDo.Dodaj("Naucyzć się na 2 kolosy z elektro");
+        listaToDo.Dodaj("Kupić mleko");
+
+        // korzystamy z funkcji GetEnumerator()
+        foreach (var item in listaToDo)
+        {
+            Console.WriteLine(item);
+        }
+        Console.WriteLine();
+
+        // korzystamy z funkcji OdTyłu()
+        foreach (var item in listaToDo.OdTyłu())
+        {
+            Console.WriteLine(item);
+        }
+        Console.ReadKey();
+    }
+}
 ```
 
 ## <a id="9-implementacja-interfejsow"></a> Implementacja wbudowanych interfejsów (wykład 9)
 
 ### <a id="9-icomparable-t"></a> interfejs IComparable\<T\> (wykład 9)
-
-### <a id="9-iconvertible"></a> interfejs IConvertible (wykład 9)
-zadanie od karwosza
-Dla klasy Book zaimplementuj sensownie interfejs IConvertible
-<pre>
-    struct Book : IConvertible
+```csharp
+class Osoba : IComparable<Osoba>
+{
+    int wiek;
+    string imie;
+    // zwraca wartość dodatnią, jeśli element z tej klasy jest większy
+    // wartość ujemną - gdy element z tej klasy jest mniejszy
+    // 0 - gdy są równe
+    public int CompareTo(Osoba inna)
     {
-        string m_Title;
-
-        public string Title
-        {
-            get { return m_Title; }
-            set { m_Title = value; }
+        if (this.wiek > inna.wiek) return 1;
+        if (this.wiek < inna.wiek) return - 1;
+        // jeśli wiek taki sam porownujemy imie
+        if (this.wiek==inna.wiek) {
+            return this.imie.CompareTo(inna.imie);
         }
-
-        public override string ToString()
-        {
-            return this.Title.ToString();
-        }
+        return 0;
     }
-</pre>
-
-
+}
+```
 
 ## <a id="10-przeciazanie-operatorow"></a>  Przeciążanie operatorów (wykład 10)
 http://cezarywalenciuk.pl/blog/programing/post/kurs-obiektowosc-w-c-przeciazanie-operatorow-16
-
 
 ```csharp
 class Ble
@@ -396,16 +421,252 @@ class Ble
     }
 }
 ```
-## <a id="11-delegaty"></a>  Delegaty (wykład 11)
+## <a id="11-delegaty"></a> Delegaty (wykład 11)
 https://4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_6
+http://cezarywalenciuk.pl/blog/programing/post/c-delegaty-action-i-func
+```csharp
+// delegat na funkcję zwracającą int i przyjmującą int
+delegate int PierwszyDelegat(int a);
 
+// delegat przyjmujący funkcję przyjmującą string
+delegate void DrugiDelegat(string zmienna);
 
-## <a id="11-zdarzenia"></a> Zdarzenia (wykład 11)
-https://4programmers.net/C_sharp/Wprowadzenie/Rozdzia%C5%82_6
+// ogólny delegat przyjmujący typ T i zwracający typ T
+delegate T OgólnyDelegat<T>(T cos);
+
+// przykładowa klasa z funkcjami
+class Test<T>
+{
+    // zmienna "delegat", nie jest nigdzie użwywany
+    PierwszyDelegat delegatWKlasie;
+    // odwołanie się do tego delegata
+    // delegatWKlasie = funkcja;
+
+    public static void Wyswietl(string wartosc)
+    {
+        Console.WriteLine(wartosc);
+    }
+}
+
+class Program
+{
+    // przykładowe funkcje
+    public static int Kwadrat(int a)
+    {
+        return a * a;
+    }
+    public static int Ble(int c)
+    {
+        return c - 120;
+    }
+
+    static void Main(string[] args)
+    {
+        Test<int> tst = new Test<int>();
+        // przypisywanie delegatom funkcji
+        PierwszyDelegat delegat1;
+        delegat1 = Kwadrat;
+        delegat1 += Ble; // dodanie drugiej funkcji do delegata
+        delegat1(5); // wywołanie delegatu
+
+        // przypisanie funkcji statycznej z klasy ogólnej
+        DrugiDelegat delegat2 = Test<int>.Wyswietl;
+
+        //przypisanie funkcji do delegata ogólnego
+        OgólnyDelegat<int> ogólny = Ble;
+        // wywołanie ogólnego delegata
+        ogólny(2);
+    }
+}
+```
 
 ## <a id="11-lambda"></a> Funckje Lambda (wykład 11)
 https://4programmers.net/C_sharp/Wyra%C5%BCenie_Lambda
 
+```csharp
+ // składnia
+// (parametry) => {zwracana wartość
+// Func<Parametr1, Parametr2, CoZwraca> zmienna = (parametry) => {zwracana wartość}
 
-## <a id="12-serializacja"></a>  Serializacja (wykład 12)
+// kwadrat przyjmuje jeden parametr int i zwraca int
+Func<int, int> kwadrat = (int ba) => { return ba * ba; };
+// jest równoważne
+// int kwadrat(int a) { return a*a };
+kwadrat(5); // wywołanie funckji
+
+// przyjmuje dwa double, zwraca int
+Func<double, double, int> funkcja2 = (double p1, double p2) => { return 1; };
+funkcja2(12.5, 33.3);
+
+// nic nie przyjmuje, zwraca string
+Func<string> funkcja3 = () => { return "sss"; };
+funkcja3();
+
+// ---------------------------
+// Action
+// Action coś przyjmuje, ale nic nie zwraca
+Action<int> funkcja4 = (int a) => { };
+```
+
+
+## <a id="12-serializacja-bianarna"></a> Serializacja binarna (wykład 12)</a>
+
+```csharp
+// ważne usingi
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+
+// przykładowa klasa do serializacji
+[Serializable]
+class Osoba
+{
+    string imie;
+
+    public Osoba(string imie)
+    {
+        this.imie = imie;
+    }
+
+    public override string ToString()
+    {
+        return imie;
+    }
+}
+
+// określenie tego, co ma się serializować
+[Serializable]
+public class RozszerzonaOsoba : ISerializable
+{
+    int pesel;
+    string nazwisko;
+    string imie;
+    [NonSerialized] // nie musimy bawić się w definicję ISerializable, itd. Równoważnie można dodać [NonSerialized]
+    double dochód;
+
+    // określany pola, które mają się serializować
+    public void GetObjectData(SerializationInfo info, StreamingContext context)
+    {
+        info.AddValue("Pesel", pesel);
+        info.AddValue("Nazwisko", nazwisko);
+        info.AddValue("Imię", imie);
+    }
+    // konstruktor "odserializujący"
+    protected RozszerzonaOsoba(SerializationInfo info, StreamingContext context)
+    {
+        pesel = info.GetInt32("Info");
+        nazwisko = info.GetString("Info");
+        imie = info.GetString("Info");
+    }
+
+}
+
+class Program
+{
+    // zapis obiektu do pliku
+    static void Zapisz(Osoba o, string plik)
+    {
+        FileStream fs = new FileStream(plik, FileMode.Create);
+        BinaryFormatter bw = new BinaryFormatter();
+        bw.Serialize(fs, o);
+        fs.Close();
+    }
+
+    // odczyt obiektu z pliku
+    static Osoba Odczytaj(string plik)
+    {
+        FileStream fs = new FileStream(plik, FileMode.Open);
+        BinaryFormatter bf = new BinaryFormatter();
+        return (Osoba)bf.Deserialize(fs);
+
+    }
+
+    static void Main(string[] args)
+    {
+        // przykładowe użycie
+        Osoba os1 = new Osoba("Omega");
+        Zapisz(os1, "omega.dat");
+        Osoba odczytana = Odczytaj("omega.dat");
+        Console.WriteLine(odczytana);
+
+        Console.ReadKey();
+    }
+}
+
+```
+
+## <a id="12-serializacja-xml"></a> Serializacja XML (wykład 12)</a> 
+https://www.codeproject.com/Articles/483055/XML-Serialization-and-Deserialization-Part
+
+1. Serializacja XML działa tylko na publicznych polach i właściwościach
+2. Serializacja XML nie zapisuje typu zmiennej
+3. Potrzebujemy domyślnego konstruktora (bez parametrów) w klasie którą chcemy serializować
+
+```csharp
+// ważne usingi
+using System.IO;
+using System.Xml.Serialization;
+
+namespace SerializacjaXML
+{
+    // przykładowa klasa do serializacji
+    [Serializable]
+    public class Osoba
+    {
+        // serializacji do XML podlegają tylko pola publiczne
+        public string imie;
+
+        public Osoba(string imie)
+        {
+            this.imie = imie;
+        }
+
+        public Osoba()
+        {
+            imie = "NIC";
+        }
+
+        public override string ToString()
+        {
+            return imie;
+        }
+    }
+
+    class Program
+    {
+        // zapis obiektu do pliku XML
+        static void Zapisz(Osoba o, string plik)
+        {
+            FileStream fs = new FileStream(plik, FileMode.Create);
+            XmlSerializer serializer = new XmlSerializer(typeof(Osoba));
+            serializer.Serialize(fs, o);
+            fs.Close();
+        }
+
+        // odczyt obiektu z pliku xml
+        static Osoba Odczytaj(string plik)
+        {
+            FileStream fs = new FileStream(plik, FileMode.Open);
+            XmlSerializer serializer = new XmlSerializer(typeof(Osoba));
+            return (Osoba)serializer.Deserialize(fs);
+
+        }
+
+        static void Main(string[] args)
+        {
+            // przykładowe użycie
+            Osoba os1 = new Osoba("Omega");
+            Zapisz(os1, "omega.xml");
+            Osoba odczytana = Odczytaj("omega.xml");
+            Console.WriteLine(odczytana);
+
+            Console.ReadKey();
+        }
+    }
+```
+## <a id="13-refleksja"></a> Refleksja (wykład 13)</a> 
+
+## <a id="13-code-dom"></a> CodeDOM (wykład 13)</a> 
+
+
 
